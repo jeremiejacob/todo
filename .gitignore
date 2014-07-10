@@ -1,0 +1,27 @@
+target
+*.class
+*.ipr
+*.iws
+*.iml
+.classpath
+.project
+.eclipse
+.settings
+log.roo
+.idea
+*.aj
+
+# Database properties file
+src/main/resources/META-INF/spring/database.properties
+
+# Email properties file
+src/main/resources/META-INF/spring/email.properties
+
+# Server properties file
+src/main/resources/META-INF/spring/server.properties
+
+# Tehai properties file
+src/main/resources/META-INF/spring/tehai.properties
+
+# Available Schedule properties file
+src/main/resources/META-INF/spring/available_schedule.properties
