@@ -23,7 +23,7 @@ public class Category {
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "userId", nullable = false)
+	@JoinColumn(name = "user_id", nullable = false)
 	private Users user;
 
 	@Column(name = "type")
