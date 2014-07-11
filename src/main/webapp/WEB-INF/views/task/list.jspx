@@ -22,32 +22,34 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>1</td>
-				<td>12:50 AM</td>
-				<td>3:00 PM</td>
-				<td>Personal</td>
-				<td>balalalalaalala</td>
-				<td>Not Done Yet</td>
-				<td>
-					<button class="btn btn-info" onclick="location.href='#'"
-						type="button">
-						<spring:message code="common.show" htmlEscape="false" />
-					</button>
-				</td>
-				<td>
-					<button class="btn btn-info" onclick="location.href='#'"
-						type="button">
-						<spring:message code="common.update" htmlEscape="false" />
-					</button>
-				</td>
-				<td>
-					<button class="btn btn-info" onclick="location.href='#'"
-						type="button">
-						<spring:message code="common.remove" htmlEscape="false" />
-					</button>
-				</td>
-			</tr>
+			<c:forEach items="${tasks}" var="task">
+				<tr>
+					<td>${task.id}</td>
+					<td>${task.startTime}</td>
+					<td>${task.endTime}</td>
+					<td><!-- TODO: fetch  category type --></td>
+					<td><c:out value="${task.description}"/></td>
+					<td>Not Done Yet</td>
+					<td>
+						<button class="btn btn-info" onclick="location.href='#'"
+							type="button">
+							<spring:message code="common.show" htmlEscape="false" />
+						</button>
+					</td>
+					<td>
+						<button class="btn btn-info" onclick="location.href='#'"
+							type="button">
+							<spring:message code="common.update" htmlEscape="false" />
+						</button>
+					</td>
+					<td>
+						<button class="btn btn-info" onclick="location.href='#'"
+							type="button">
+							<spring:message code="common.remove" htmlEscape="false" />
+						</button>
+					</td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </div>
