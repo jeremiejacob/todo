@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-    <jsp:output omit-xml-declaration="yes"/>
-    <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
-        <menu:category id="c_controller" z="nj8Dm3hojIyIEyPkwE1UMDIs+K8=">
-            <menu:item id="i_controller__usersindex_id" messageCode="global_generic" url="/users/index" z="eekebXTfgLwouompV8HBVtW9/fM="/>
-            <menu:item id="i_controller__taskindex_id" messageCode="global_generic" url="/task/index" z="eVSbZPcGmrK/qXqFmagCwD8VSzE="/>
-            <menu:item id="i_controller__categoryindex_id" messageCode="global_generic" url="/category/index" z="JfQ7iB8z9hFMwQ8u/H4PuLBuFvU="/>
-        </menu:category>
-    </menu:menu>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+		<menu:category id="c_controller" z="nj8Dm3hojIyIEyPkwE1UMDIs+K8=">
+			<menu:item id="i_controller__users_id" messageCode="menu_item_controller_users_label" url="#" z="" />
+				<menu:subitem id="i_controller_users_create" messageCode="submenu.user_create" url="/users/create" z="" />
+				<menu:subitem id="i_controller_users_list" messageCode="submenu.user_list" url="/users/list" z="" />
+			<menu:item id="i_controller__category_id" messageCode="menu_item_controller_category_label" url="#" z="" />
+				<menu:subitem id="i_controller_category_create" messageCode="submenu.category_create" url="/category/create" z="" />
+				<menu:subitem id="i_controller_category_list" messageCode="submenu.category_list" url="/category/list" z="" />
+			<menu:item id="i_controller__task_id" messageCode="menu_item_controller_task_label" url="#" z="" />
+				<menu:subitem id="i_controller_task_create" messageCode="submenu.task_create" url="/task/create" z="" />
+				<menu:subitem id="i_controller_task_list" messageCode="submenu.task_list" url="/task/list" z="" />
+		</menu:category>
+	</menu:menu>
 </div>
