@@ -83,14 +83,17 @@ public class CategoryController {
 			return showEditForm(model, form, bindingResult);
 		}
 		Category category = form.toEntity();
+		Users user = new Users();
 		if (category.getId() == null) {
 			//FIXME: Dummy user_id
-			Users user = new Users();
 			user.setId(12);
 			category.setUser(user);
 			category.persist();
 			redirectAttributes.addFlashAttribute("messageCode", "common.created.success");
 		} else {
+			//FIXME: Dummy user_id
+			user.setId(12);
+			category.setUser(user);
 			category.merge();
 			redirectAttributes.addFlashAttribute("messageCode", "common.updated.success");
 		}
