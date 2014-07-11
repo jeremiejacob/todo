@@ -8,17 +8,28 @@
   			<th>ID</th>
   			<th>Time</th>
   			<th>Description</th>
-  			<Status> 			
+  			<th>Category</th>	
+  			<th>Status</th>	
   		</tr>
   	</thead>
   	<tbody>
-	      <c:forEach items="" var="task">
+	      <c:forEach items="tasks" var="task">
              <tr>
                  <td>
-                     <c:out value=""/>
+                 	<c:out value="${task.id}"/>
                  </td>
                  <td>
-                     <c:out value=""/>
+                     <c:out value="${task.startTime}"/>
+                     <c:out value="${task.endTime}"/>
+                 </td>
+                 <td>
+                     <c:out value="${task.description}"/>
+                 </td>
+                 <td>
+                     <c:out value="Category"/>
+                 </td>
+                 <td>
+                     <c:out value="Status"/>
                  </td>
                  <td>
                      <button class="btn btn-info" onclick="location.href='show/${base.id}';" type="button">
