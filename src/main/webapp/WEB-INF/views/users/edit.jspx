@@ -1,24 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="http://www.springframework.org/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-    <jsp:output omit-xml-declaration="yes"/>
-    <form:form action="save" method="POST" modelAttribute="form">
-    <form:hidden path="id"/>
-     <table>
-        <thead></thead>
-        <tbody>
-        		<tr>
-                    <td><spring:message code="common.email"/></td>
-                    <td>
-                    	<form:input path="email"/>
-                    </td>
-                </tr>
-            	<tr>
-                    <td><spring:message code="common.password"/></td>
-                    <td><form:password path="password"/></td>
-                </tr>
-        </tbody>
-    </table>
-    <button type="submit">Submit</button>
-    </form:form>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<form:form action="save" method="POST" modelAttribute="form">
+		<form:hidden path="id" />
+		<table>
+			<thead></thead>
+			<tbody>
+				<tr>
+					<td><spring:message code="common.email" /></td>
+					<td>
+						<div>
+							<form:errors path="email" />
+						</div> <form:input path="email" />
+					</td>
+				</tr>
+				<tr>
+					<td><spring:message code="common.password" /></td>
+					<td>
+						<div>
+							<form:errors path="password" />
+						</div> <form:password path="password" value="${form.password}"
+							showPassword="true" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<button type="submit">
+			<c:if test="${form.id == null}">
+				<spring:message code="common.create" />
+			</c:if>
+			<c:if test="${form.id != null}">
+				<spring:message code="common.update" />
+			</c:if>
+		</button>
+	</form:form>
 </div>
