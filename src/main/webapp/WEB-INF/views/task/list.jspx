@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:c="http://java.sun.com/jstl/core_rt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-    <jsp:output omit-xml-declaration="yes"/>
+<div xmlns:c="http://java.sun.com/jstl/core_rt"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
 	<h1>Task List</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Start Time</th>
+				<th>End Time</th>
+				<th>Category</th>
+				<th>Description</th>
+				<th>Status</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>12:50 AM</td>
+				<td>3:00 PM</td>
+				<td>Personal</td>
+				<td>balalalalaalala</td>
+				<td>Not Done Yet</td>
+				<td>
+					<button class="btn btn-info" onclick="location.href='#'"
+						type="button">
+						<spring:message code="common.show" htmlEscape="false" />
+					</button>
+				</td>
+				<td>
+					<button class="btn btn-info" onclick="location.href='#'"
+						type="button">
+						<spring:message code="common.update" htmlEscape="false" />
+					</button>
+				</td>
+				<td>
+					<button class="btn btn-info" onclick="location.href='#'"
+						type="button">
+						<spring:message code="common.remove" htmlEscape="false" />
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
