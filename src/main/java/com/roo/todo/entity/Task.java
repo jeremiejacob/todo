@@ -28,11 +28,11 @@ public class Task {
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "userId", nullable = false)
+	@JoinColumn(name = "user_id", nullable = false)
 	private Users user;
 
 	@ManyToOne
-	@JoinColumn(name = "categoryId", nullable = true)
+	@JoinColumn(name = "category_id", nullable = true)
 	private Category category;
 
 	@Column(name = "description")
