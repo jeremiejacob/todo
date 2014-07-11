@@ -1,5 +1,6 @@
 package com.roo.form;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 
@@ -12,9 +13,11 @@ public class UserEditForm {
 	private Integer id;
 	
 	@NotEmpty
+	@Length(max = 50, min = 4)
 	private String email;
 	
 	@NotEmpty
+	@Length(max = 50, min = 4)
 	private String password;
 	
 	/**
