@@ -27,7 +27,7 @@
 					<td>${task.id}</td>
 					<td>${task.startTime}</td>
 					<td>${task.endTime}</td>
-					<td><!-- TODO: fetch  category type --></td>
+					<td><c:out value="${task.category.type}" /></td>
 					<td><c:out value="${task.description}"/></td>
 					<td>Not Done Yet</td>
 					<td>
