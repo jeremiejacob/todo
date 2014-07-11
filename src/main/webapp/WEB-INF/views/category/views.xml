@@ -4,4 +4,13 @@
     <definition extends="default" name="category/index">
         <put-attribute name="body" value="/WEB-INF/views/category/index.jspx"/>
     </definition>
+    <definition extends="default" name="category/list">
+        <put-attribute name="body" value="/WEB-INF/views/category/list.jspx"/>
+    </definition>
+    <definition extends="default" name="category/edit">
+        <put-attribute name="body" value="/WEB-INF/views/category/edit.jspx"/>
+    </definition>
+    <definition extends="default" name="category/show">
+        <put-attribute name="body" value="/WEB-INF/views/category/show.jspx"/>
+    </definition>
 </tiles-definitions>
