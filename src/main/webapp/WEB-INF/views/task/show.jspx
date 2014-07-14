@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jstl/core_rt"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<h1>Show Task</h1>
+	<table>
+		<thead></thead>
+		<tbody>
+			<tr>
+				<td>ID</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>Start Time</td>
+				<td>10:00 AM</td>
+			</tr>
+			<tr>
+				<td>End Time</td>
+				<td>1:00 PM</td>
+			</tr>
+			<tr>
+				<td>Category</td>
+				<td>Personal</td>
+			</tr>
+			<tr>
+				<td>Description</td>
+				<td>Something to do!</td>
+			</tr>
+			<tr>
+				<td>Status</td>
+				<td>Not Done Yet</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
