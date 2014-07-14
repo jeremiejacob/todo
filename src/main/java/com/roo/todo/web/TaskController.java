@@ -26,6 +26,7 @@ public class TaskController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "show/{id}")
 	public String show(Model model, @PathVariable("id") Integer id) {
+		model.addAttribute("task", Task.findTask(id));
 		return "task/show";
 	}
 }

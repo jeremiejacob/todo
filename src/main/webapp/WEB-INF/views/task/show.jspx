@@ -12,27 +12,27 @@
 		<tbody>
 			<tr>
 				<td>ID</td>
-				<td>1</td>
+				<td>${task.id}</td>
 			</tr>
 			<tr>
 				<td>Start Time</td>
-				<td>10:00 AM</td>
+				<td>${task.startTime}</td>
 			</tr>
 			<tr>
 				<td>End Time</td>
-				<td>1:00 PM</td>
+				<td>${task.endTime }</td>
 			</tr>
 			<tr>
 				<td>Category</td>
-				<td>Personal</td>
+				<td><c:out value="${task.category.type}"/></td>
 			</tr>
 			<tr>
 				<td>Description</td>
-				<td>Something to do!</td>
+				<td><c:out value="${task.description}"/></td>
 			</tr>
 			<tr>
 				<td>Status</td>
-				<td>Not Done Yet</td>
+				<td><!--TODO: fix status logic  -->Not Done Yet</td>
 			</tr>
 		</tbody>
 	</table>
