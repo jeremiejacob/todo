@@ -7,4 +7,7 @@
     <definition extends="default" name="task/show">
         <put-attribute name="body" value="/WEB-INF/views/task/show.jspx"/>
     </definition>
+    <definition extends="default" name="task/edit">
+        <put-attribute name="body" value="/WEB-INF/views/task/edit.jspx"/>
+    </definition>
 </tiles-definitions>

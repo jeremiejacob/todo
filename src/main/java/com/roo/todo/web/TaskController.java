@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.roo.form.TaskEditForm;
 import com.roo.todo.entity.Task;
 
 @RequestMapping("/task/**")
@@ -28,5 +29,14 @@ public class TaskController {
 	public String show(Model model, @PathVariable("id") Integer id) {
 		model.addAttribute("task", Task.findTask(id));
 		return "task/show";
+	}
+	
+	/**
+	 * Display create task screen
+	 */
+	@RequestMapping(method = RequestMethod.GET, value= "create")
+	public String create(Model model) {
+		model.addAttribute("form", new TaskEditForm());
+		return "task/edit";
 	}
 }
