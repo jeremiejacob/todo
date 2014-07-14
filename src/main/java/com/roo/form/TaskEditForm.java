@@ -40,4 +40,14 @@ public class TaskEditForm {
 		task.setCategory(category);
 		return task;
 	}
+	
+	public static TaskEditForm fromEntity(Task task) {
+		TaskEditForm form  = new TaskEditForm();
+		form.id = task.getId();
+		form.startTime = task.getStartTime();
+		form.endTime = task.getEndTime();
+		form.category = task.getCategory();
+		form.description = task.getDescription();
+		return form;
+	}
 }

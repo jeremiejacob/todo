@@ -22,6 +22,7 @@ import com.roo.todo.entity.Users;
 @Controller
 public class TaskController {
 
+	private static final Logger logger = Logger.getLogger(TaskEditForm.class);
 	/**
 	 * Display task list screen
 	 */
@@ -64,6 +65,22 @@ public class TaskController {
 		user.setId(12);
 		task.setUser(user);
 		task.persist();
-		return "redirect:task/list";
+		return "redirect:/task/list";
+	}
+	/**
+	 * Update Task
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = "update/{id}")
+	public String update(Model model, @PathVariable("id") Integer id) {
+		Task task  = Task.findTask(id);
+		if (task == null) {
+			return "redirect:/task/list";
+		}
+		return showEditForm(model, TaskEditForm.fromEntity(task), null);
+	}
+	
+	private String showEditForm(Model model, TaskEditForm form, BindingResult bindingResult) {
+		model.addAttribute("form", form);
+		return "task/edit";
 	}
 }
