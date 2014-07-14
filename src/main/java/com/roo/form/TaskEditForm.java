@@ -1,8 +1,8 @@
 package com.roo.form;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
+import javax.validation.constraints.NotNull;
 
 import org.apache.log4j.Logger;
 import org.hibernate.validator.constraints.Length;
@@ -19,16 +19,25 @@ public class TaskEditForm {
 	
 	private Integer id;
 
-	@NotEmpty
+	@NotNull
 	private Date startTime;
 
-	@NotEmpty
+	@NotNull
 	private Date endTime;
 	
-	private String category;
+	private Category category;
 
 	@NotEmpty
 	@Length(max = 50)
-	private String Description;
+	private String description;
 	
+	public Task toEntity() {
+		Task task = new Task();
+		task.setId(id);
+		task.setStartTime(startTime);
+		task.setEndTime(endTime);
+		task.setDescription(description);
+		task.setCategory(category);
+		return task;
+	}
 }
