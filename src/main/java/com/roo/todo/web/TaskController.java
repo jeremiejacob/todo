@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.roo.form.TaskEditForm;
+import com.roo.todo.entity.Category;
 import com.roo.todo.entity.Task;
 
 @RequestMapping("/task/**")
@@ -37,6 +38,7 @@ public class TaskController {
 	@RequestMapping(method = RequestMethod.GET, value= "create")
 	public String create(Model model) {
 		model.addAttribute("form", new TaskEditForm());
+		model.addAttribute("categories", Category.findAllCategorys());
 		return "task/edit";
 	}
 }
