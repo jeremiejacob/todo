@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 
-import com.roo.todo.entity.Users;
+import com.roo.todo.entity.User;
 
 @RooJavaBean
 public class UserEditForm {
@@ -24,15 +24,15 @@ public class UserEditForm {
      * Generate Users entity object from this instance values.
      */
 	
-	public Users toEntity() {
-		Users users = new Users();
+	public User toEntity() {
+		User users = new User();
 		users.setId(id);
 		users.setEmail(email);
 		users.setPassword(password);
 		return users;
 	}
 	
-	public static UserEditForm fromEntity(Users users) {
+	public static UserEditForm fromEntity(User users) {
 		UserEditForm form = new UserEditForm();
 		form.setId(users.getId());
 		form.setEmail(users.getEmail());

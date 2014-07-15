@@ -1,6 +1,6 @@
 package com.roo.todo.entity;
 import org.springframework.roo.addon.dod.RooDataOnDemand;
 
-@RooDataOnDemand(entity = Users.class)
+@RooDataOnDemand(entity = User.class)
 public class UsersDataOnDemand {
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.roo.form.UserEditForm;
-import com.roo.todo.entity.Users;
+import com.roo.todo.entity.User;
 
 @RequestMapping("/users/**")
 @Controller
@@ -23,7 +23,7 @@ public class UserController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "list")
 	public String list(Model model) {
-		model.addAttribute("users", Users.findAllUserses());
+		model.addAttribute("users", User.findAllUsers());
 		return "users/list";
 	}
 
@@ -32,7 +32,7 @@ public class UserController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "show/{id}")
 	public String show(Model model, @PathVariable("id") Integer id) {
-		model.addAttribute("user", Users.findUsers(id));
+		model.addAttribute("user", User.findUser(id));
 		return "users/show";
 	}
 
@@ -49,12 +49,12 @@ public class UserController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "update/{id}")
 	public String update(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-		Users users = Users.findUsers(id);
-		if (users == null) {
+		User user = User.findUser(id);
+		if (user == null) {
 			redirectAttributes.addFlashAttribute("messageCode", "user_list.no.found.user");
 			return "redirect:/users/list";
 		} 
-		return showEditForm(model, UserEditForm.fromEntity(users), null);
+		return showEditForm(model, UserEditForm.fromEntity(user), null);
 	}
 
 	/**
@@ -62,11 +62,11 @@ public class UserController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "remove/{id}")
 	public String remove(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
-		Users users = Users.findUsers(id);
-		if (users == null) {
+		User user = User.findUser(id);
+		if (user == null) {
 			redirectAttributes.addFlashAttribute("messageCode", "user_list.no.found.user");
 		} else {
-			users.remove();
+			user.remove();
 			redirectAttributes.addFlashAttribute("messageCode", "common.deleted.success");
 		}
 		return "redirect:/users/list";
@@ -82,12 +82,12 @@ public class UserController {
 		if (bindingResult.hasErrors()) {
 			return showEditForm(model, form, bindingResult);
 		}
-		Users users = form.toEntity();
-		if (users.getId() == null) {
-			users.persist();
+		User user = form.toEntity();
+		if (user.getId() == null) {
+			user.persist();
 			redirectAttributes.addFlashAttribute("messageCode", "common.created.success");
 		} else {
-			users.merge();
+			user.merge();
 			redirectAttributes.addFlashAttribute("messageCode", "common.updated.success");
 		}
 		return "redirect:/users/list";

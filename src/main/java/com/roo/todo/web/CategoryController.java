@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.roo.form.CategoryEditForm;
 import com.roo.todo.entity.Category;
-import com.roo.todo.entity.Users;
+import com.roo.todo.entity.User;
 
 @RequestMapping("/category/**")
 @Controller
@@ -83,7 +83,7 @@ public class CategoryController {
 			return showEditForm(model, form, bindingResult);
 		}
 		Category category = form.toEntity();
-		Users user = new Users();
+		User user = new User();
 		if (category.getId() == null) {
 			//FIXME: Dummy user_id
 			user.setId(12);

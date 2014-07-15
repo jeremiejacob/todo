@@ -16,7 +16,7 @@ import com.roo.form.CategoryEditForm;
 import com.roo.form.TaskEditForm;
 import com.roo.todo.entity.Category;
 import com.roo.todo.entity.Task;
-import com.roo.todo.entity.Users;
+import com.roo.todo.entity.User;
 
 @RequestMapping("/task/**")
 @Controller
@@ -60,7 +60,7 @@ public class TaskController {
 			return "task/edit";
 		}
 		Task task = form.toEntity();
-		Users user = new Users();
+		User user = new User();
 		//FIXME: Dummy user_id
 		user.setId(12);
 		task.setUser(user);
