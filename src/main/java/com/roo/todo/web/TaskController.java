@@ -64,7 +64,11 @@ public class TaskController {
 		//FIXME: Dummy user_id
 		user.setId(12);
 		task.setUser(user);
-		task.persist();
+		if (task.getId() ==null) {
+			task.persist();
+		} else {
+			task.merge();
+		}
 		return "redirect:/task/list";
 	}
 	/**
@@ -78,6 +82,21 @@ public class TaskController {
 			return "redirect:/task/list";
 		}
 		return showEditForm(model, TaskEditForm.fromEntity(task), null);
+	}
+	
+	/**
+	 * Delete Task
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = "remove/{id}")
+	public String remove(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
+		Task task = Task.findTask(id);
+		if (task == null) {
+			redirectAttributes.addFlashAttribute("messageCode", "task_list.no.found.task");
+		} else {
+			task.remove();
+			redirectAttributes.addFlashAttribute("messageCode", "common.deleted.success");
+		}
+		return "redirect:/task/list";
 	}
 	
 	private String showEditForm(Model model, TaskEditForm form, BindingResult bindingResult) {
