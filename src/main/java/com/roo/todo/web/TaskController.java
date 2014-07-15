@@ -73,6 +73,7 @@ public class TaskController {
 	@RequestMapping(method = RequestMethod.GET, value = "update/{id}")
 	public String update(Model model, @PathVariable("id") Integer id) {
 		Task task  = Task.findTask(id);
+		model.addAttribute("categories", Category.findAllCategorys());
 		if (task == null) {
 			return "redirect:/task/list";
 		}
