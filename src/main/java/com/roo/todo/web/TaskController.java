@@ -3,6 +3,7 @@ package com.roo.todo.web;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,18 +18,25 @@ import com.roo.form.TaskEditForm;
 import com.roo.todo.entity.Category;
 import com.roo.todo.entity.Task;
 import com.roo.todo.entity.User;
+import com.roo.todo.service.CategoryService;
+import com.roo.todo.service.TaskService;
 
 @RequestMapping("/task/**")
 @Controller
 public class TaskController {
-
-	private static final Logger logger = Logger.getLogger(TaskEditForm.class);
+	
+	@Autowired
+	private TaskService taskService;
+	
+	@Autowired
+	private CategoryService categoryService;
+	
 	/**
 	 * Display task list screen
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "list")
 	public String list(Model model) {
-		model.addAttribute("tasks", Task.findAllTasks());
+		model.addAttribute("tasks", taskService.findAllTasks());
 		return "task/list";
 	}
 	
@@ -37,7 +45,7 @@ public class TaskController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "show/{id}")
 	public String show(Model model, @PathVariable("id") Integer id) {
-		model.addAttribute("task", Task.findTask(id));
+		model.addAttribute("task", taskService.findTask(id));
 		return "task/show";
 	}
 	
@@ -47,7 +55,7 @@ public class TaskController {
 	@RequestMapping(method = RequestMethod.GET, value= "create")
 	public String create(Model model) {
 		model.addAttribute("form", new TaskEditForm());
-		model.addAttribute("categories", Category.findAllCategorys());
+		model.addAttribute("categories", categoryService.findAllCategorys());
 		return "task/edit";
 	}
 	
@@ -65,9 +73,9 @@ public class TaskController {
 		user.setId(12);
 		task.setUser(user);
 		if (task.getId() ==null) {
-			task.persist();
+			taskService.persist(task);
 		} else {
-			task.merge();
+			taskService.merge(task);
 		}
 		return "redirect:/task/list";
 	}
@@ -76,8 +84,8 @@ public class TaskController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "update/{id}")
 	public String update(Model model, @PathVariable("id") Integer id) {
-		Task task  = Task.findTask(id);
-		model.addAttribute("categories", Category.findAllCategorys());
+		Task task  = taskService.findTask(id);
+		model.addAttribute("categories", categoryService.findAllCategorys());
 		if (task == null) {
 			return "redirect:/task/list";
 		}
@@ -89,11 +97,11 @@ public class TaskController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "remove/{id}")
 	public String remove(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
-		Task task = Task.findTask(id);
+		Task task = taskService.findTask(id);
 		if (task == null) {
 			redirectAttributes.addFlashAttribute("messageCode", "task_list.no.found.task");
 		} else {
-			task.remove();
+			taskService.remove(task);
 			redirectAttributes.addFlashAttribute("messageCode", "common.deleted.success");
 		}
 		return "redirect:/task/list";
