@@ -21,7 +21,6 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-//@RooJpaActiveRecord(versionField = "", schema = "public", table = "task")
 @Entity
 @Table(name="task")
 public class Task {
