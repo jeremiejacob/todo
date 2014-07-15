@@ -54,9 +54,8 @@ public class TaskController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value= "create")
 	public String create(Model model) {
-		model.addAttribute("form", new TaskEditForm());
 		model.addAttribute("categories", categoryService.findAllCategorys());
-		return "task/edit";
+		return showEditForm(model, new TaskEditForm(), null);
 	}
 	
 	/**
@@ -64,15 +63,15 @@ public class TaskController {
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "save")
 	public String save(Model model, @Valid @ModelAttribute("form") TaskEditForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes){
-		if (bindingResult.hasErrors()) {
-			return "task/edit";
-		}
+//		if (bindingResult.hasErrors()) {
+//			return showEditForm(model, form, bindingResult);
+//		}
 		Task task = form.toEntity();
 		User user = new User();
 		//FIXME: Dummy user_id
 		user.setId(12);
 		task.setUser(user);
-		if (task.getId() ==null) {
+		if (task.getId() == null) {
 			taskService.persist(task);
 		} else {
 			taskService.merge(task);
