@@ -31,20 +31,17 @@
 					<td><c:out value="${task.description}"/></td>
 					<td>Not Done Yet</td>
 					<td>
-						<button class="btn btn-info" onclick="location.href='#'"
-							type="button">
+						<button class="btn btn-info" onclick="location.href='show/${task.id}';" type="button">
 							<spring:message code="common.show" htmlEscape="false" />
 						</button>
 					</td>
 					<td>
-						<button class="btn btn-info" onclick="location.href='#'"
-							type="button">
+						<button class="btn btn-info" onclick="location.href='update/${task.id}';" type="button">
 							<spring:message code="common.update" htmlEscape="false" />
 						</button>
 					</td>
 					<td>
-						<button class="btn btn-info" onclick="location.href='#'"
-							type="button">
+						<button class="btn btn-info" onclick="location.href='remove/${task.id}';" type="button">
 							<spring:message code="common.remove" htmlEscape="false" />
 						</button>
 					</td>
