@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.roo.todo.entity.User;
 
@@ -24,8 +25,9 @@ public class UserService {
 		return entityManager.find(User.class, id);
 	}
 
+	@Transactional
 	public void persist(User user) {
-
+		entityManager.persist(user);
 	}
 
 	public void merge(User user) {
