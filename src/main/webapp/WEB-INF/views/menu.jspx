@@ -4,7 +4,7 @@
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
 
-	<menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+	<!-- <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
 		<menu:category id="c_controller" z="nj8Dm3hojIyIEyPkwE1UMDIs+K8=">
 			<menu:item id="i_controller__users_id" messageCode="menu_item_controller_users_label" url="#" z="" />
 				<menu:subitem id="i_controller_users_create" messageCode="submenu.user_create" url="/users/create" z="" />
@@ -16,5 +16,5 @@
 				<menu:subitem id="i_controller_task_create" messageCode="submenu.task_create" url="/task/create" z="" />
 				<menu:subitem id="i_controller_task_list" messageCode="submenu.task_list" url="/task/list" z="" />
 		</menu:category>
-	</menu:menu>
+	</menu:menu> -->
 </div>
