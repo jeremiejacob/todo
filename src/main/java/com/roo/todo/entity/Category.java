@@ -15,7 +15,6 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-//@RooJpaActiveRecord(versionField = "", schema = "public", table = "category")
 @Entity
 @Table(name="category")
 public class Category {
