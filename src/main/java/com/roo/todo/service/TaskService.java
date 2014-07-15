@@ -29,8 +29,9 @@ public class TaskService {
 		entityManager.persist(task);
 	}
 
+	@Transactional
 	public void merge(Task task) {
-
+		entityManager.merge(task);
 	}
 
 	public void remove(Task task) {
