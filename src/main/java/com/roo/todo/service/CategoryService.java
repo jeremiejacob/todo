@@ -33,9 +33,10 @@ public class CategoryService {
 	public void merge(Category category) {
 		entityManager.merge(category);
 	}
-
+	
+	@Transactional
 	public void remove(Category category) {
-
+		entityManager.remove(category);
 	}
 
 }
