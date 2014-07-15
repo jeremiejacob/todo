@@ -2,6 +2,7 @@ package com.roo.todo.web;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,17 +14,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.roo.form.UserEditForm;
 import com.roo.todo.entity.User;
+import com.roo.todo.service.UserService;
 
 @RequestMapping("/users/**")
 @Controller
 public class UserController {
 
+	@Autowired
+	private UserService userService;
+	
 	/**
 	 * Display all Users List Screen
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "list")
 	public String list(Model model) {
-		model.addAttribute("users", User.findAllUsers());
+		model.addAttribute("users", userService.findAllUsers());
 		return "users/list";
 	}
 
@@ -32,7 +37,7 @@ public class UserController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "show/{id}")
 	public String show(Model model, @PathVariable("id") Integer id) {
-		model.addAttribute("user", User.findUser(id));
+		model.addAttribute("user", userService.findUser(id));
 		return "users/show";
 	}
 
@@ -49,7 +54,7 @@ public class UserController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "update/{id}")
 	public String update(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-		User user = User.findUser(id);
+		User user = userService.findUser(id);
 		if (user == null) {
 			redirectAttributes.addFlashAttribute("messageCode", "user_list.no.found.user");
 			return "redirect:/users/list";
@@ -62,11 +67,11 @@ public class UserController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "remove/{id}")
 	public String remove(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
-		User user = User.findUser(id);
+		User user = userService.findUser(id);
 		if (user == null) {
 			redirectAttributes.addFlashAttribute("messageCode", "user_list.no.found.user");
 		} else {
-			user.remove();
+			userService.remove(user);
 			redirectAttributes.addFlashAttribute("messageCode", "common.deleted.success");
 		}
 		return "redirect:/users/list";
@@ -84,10 +89,10 @@ public class UserController {
 		}
 		User user = form.toEntity();
 		if (user.getId() == null) {
-			user.persist();
+			userService.persist(user);
 			redirectAttributes.addFlashAttribute("messageCode", "common.created.success");
 		} else {
-			user.merge();
+			userService.merge(user);
 			redirectAttributes.addFlashAttribute("messageCode", "common.updated.success");
 		}
 		return "redirect:/users/list";
