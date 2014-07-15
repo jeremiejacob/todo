@@ -29,7 +29,9 @@ public class CategoryService {
 		entityManager.persist(category);
 	}
 
+	@Transactional
 	public void merge(Category category) {
+		entityManager.merge(category);
 	}
 
 	public void remove(Category category) {
