@@ -34,7 +34,8 @@ public class TaskService {
 		entityManager.merge(task);
 	}
 
+	@Transactional
 	public void remove(Task task) {
-
+		entityManager.remove(task);
 	}
 }
