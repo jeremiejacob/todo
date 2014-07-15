@@ -20,7 +20,7 @@ public class TaskService {
 	}
 
 	public Task findTask(Integer id) {
-		return null;
+		return entityManager.find(Task.class, id);
 	}
 
 	public void persist(Task task) {
