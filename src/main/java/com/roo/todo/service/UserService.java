@@ -30,8 +30,9 @@ public class UserService {
 		entityManager.persist(user);
 	}
 
+	@Transactional
 	public void merge(User user) {
-
+		entityManager.merge(user);
 	}
 
 	public void remove(User user) {
