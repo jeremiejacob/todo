@@ -20,7 +20,7 @@ public class CategoryService {
 	}
 
 	public Category findCategory(Integer id) {
-		return null;
+		return entityManager.find(Category.class, id);
 	}
 
 	public void persist(Category category) {
