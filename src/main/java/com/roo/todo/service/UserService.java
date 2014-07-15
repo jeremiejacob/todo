@@ -35,7 +35,8 @@ public class UserService {
 		entityManager.merge(user);
 	}
 
+	@Transactional
 	public void remove(User user) {
-
+		entityManager.remove(user);
 	}
 }
