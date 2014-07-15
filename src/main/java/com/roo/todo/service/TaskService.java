@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.roo.todo.entity.Task;
 
@@ -23,8 +24,9 @@ public class TaskService {
 		return entityManager.find(Task.class, id);
 	}
 
+	@Transactional
 	public void persist(Task task) {
-
+		entityManager.persist(task);
 	}
 
 	public void merge(Task task) {
