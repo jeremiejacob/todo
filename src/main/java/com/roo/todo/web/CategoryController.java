@@ -1,6 +1,7 @@
 package com.roo.todo.web;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,17 +14,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.roo.form.CategoryEditForm;
 import com.roo.todo.entity.Category;
 import com.roo.todo.entity.User;
+import com.roo.todo.service.CategoryService;
 
 @RequestMapping("/category/**")
 @Controller
 public class CategoryController {
 
+	@Autowired
+	private CategoryService categoryService;
+	
 	/**
 	 * Display all Category List Screen
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "list")
 	public String list(Model model) {
-		model.addAttribute("categories", Category.findAllCategorys());
+		model.addAttribute("categories", categoryService.findAllCategorys());
 		return "category/list";
 	}
 	
@@ -32,7 +37,7 @@ public class CategoryController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "show/{id}")
 	public String show(Model model, @PathVariable("id") Integer id) {
-		model.addAttribute("category", Category.findCategory(id));
+		model.addAttribute("category", categoryService.findCategory(id));
 		return "category/show";
 	}
     
@@ -49,7 +54,7 @@ public class CategoryController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "update/{id}")
 	public String update(Model model, @PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-		Category category = Category.findCategory(id);
+		Category category = categoryService.findCategory(id);
 		if (category == null) {
 			redirectAttributes.addFlashAttribute("messageCode", "category_list.no.found.category");
 			return "redirect:/category/list";
@@ -62,11 +67,11 @@ public class CategoryController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "remove/{id}")
 	public String remove(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
-		Category category = Category.findCategory(id);
+		Category category = categoryService.findCategory(id);
 		if (category == null) {
 			redirectAttributes.addFlashAttribute("messageCode", "category_list.no.found.category");
 		} else {
-			category.remove();
+			categoryService.remove(category);
 			redirectAttributes.addFlashAttribute("messageCode", "common.deleted.success");
 		}
 		return "redirect:/category/list";
@@ -84,17 +89,14 @@ public class CategoryController {
 		}
 		Category category = form.toEntity();
 		User user = new User();
+		//FIXME: Dummy user_id
+		user.setId(12);
+		category.setUser(user);
 		if (category.getId() == null) {
-			//FIXME: Dummy user_id
-			user.setId(12);
-			category.setUser(user);
-			category.persist();
+			categoryService.persist(category);
 			redirectAttributes.addFlashAttribute("messageCode", "common.created.success");
 		} else {
-			//FIXME: Dummy user_id
-			user.setId(12);
-			category.setUser(user);
-			category.merge();
+			categoryService.merge(category);
 			redirectAttributes.addFlashAttribute("messageCode", "common.updated.success");
 		}
 		return "redirect:/category/list";
