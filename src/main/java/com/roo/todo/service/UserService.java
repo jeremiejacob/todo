@@ -20,7 +20,8 @@ public class UserService {
 	}
 
 	public User findUser(Integer id) {
-		return null;
+		if (id == null) return null;
+		return entityManager.find(User.class, id);
 	}
 
 	public void persist(User user) {
