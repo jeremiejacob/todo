@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.roo.todo.entity.Category;
 
@@ -23,12 +24,12 @@ public class CategoryService {
 		return entityManager.find(Category.class, id);
 	}
 
+	@Transactional
 	public void persist(Category category) {
-
+		entityManager.persist(category);
 	}
 
 	public void merge(Category category) {
-
 	}
 
 	public void remove(Category category) {
