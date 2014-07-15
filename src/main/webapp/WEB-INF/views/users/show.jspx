@@ -8,19 +8,20 @@
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
 
+	<h1><spring:message code = "show.user"/></h1>
 	<table>
 		<thead></thead>
 		<tbody>
 			<tr>
-				<td><c:out value="ID" /></td>
+				<td><spring:message code ="common.id"/></td>
 				<td><c:out value="${user.id}" /></td>
 			</tr>
 			<tr>
-				<td><c:out value="Email" /></td>
+				<td><spring:message code ="common.email"/></td>
 				<td><c:out value="${user.email}" /></td>
 			</tr>
 			<tr>
-				<td><c:out value="Password" /></td>
+				<td><spring:message code ="common.password"/></td>
 				<td><c:out value="*******" /></td>
 			</tr>
 		</tbody>
