@@ -15,14 +15,15 @@ public class UserService {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	public List<User> findAllUsers() {
 		return entityManager.createQuery("SELECT o FROM User o", User.class).getResultList();
 	}
 
 	public User findUser(Integer id) {
-		if (id == null) return null;
-		return entityManager.find(User.class, id);
+		if (id == null)
+			return null;
+		return entityManager.createQuery("SELECT o FROM User o WHERE id=:id", User.class).setParameter("id", id).getSingleResult();
 	}
 
 	@Transactional
@@ -39,4 +40,5 @@ public class UserService {
 	public void remove(User user) {
 		entityManager.remove(user);
 	}
+
 }
