@@ -2,6 +2,7 @@
 <div xmlns:c="http://java.sun.com/jstl/core_rt"
 	xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:form="http://www.springframework.org/tags/form"
 	xmlns:spring="http://www.springframework.org/tags"
 	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
@@ -9,6 +10,23 @@
 	<c:if test="${not empty messageCode}">
 		<spring:message code="${messageCode}" htmlEscape="false" />
 	</c:if>
+	<form:form action="list" method="GET" modelAttribute="form">
+		<h1>Filter</h1>
+		<table>
+			<thead></thead>
+			<tbody>
+				<tr>
+					<td><spring:message code="common.email" /></td>
+					<td>
+						<form:input path="email"/>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<button type="submit">
+			<spring:message code="common.search"/>
+		</button>
+	</form:form>
 	<table>
 		<thead>
 			<tr>

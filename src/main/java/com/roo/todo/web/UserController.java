@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.roo.form.UserEditForm;
+import com.roo.form.UserFilterForm;
 import com.roo.todo.entity.User;
 import com.roo.todo.service.UserService;
 
@@ -27,7 +28,7 @@ public class UserController {
 	 * Display all Users List Screen
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "list")
-	public String list(Model model) {
+	public String list(Model model, @ModelAttribute("form") UserFilterForm form) {
 		model.addAttribute("users", userService.findAllUsers());
 		return "users/list";
 	}

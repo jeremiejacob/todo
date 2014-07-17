@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.roo.form.UserFilterForm;
 import com.roo.todo.entity.User;
 
 @Service
@@ -24,6 +25,10 @@ public class UserService {
 		if (id == null)
 			return null;
 		return entityManager.createQuery("SELECT o FROM User o WHERE id=:id", User.class).setParameter("id", id).getSingleResult();
+	}
+	
+	public List<User> findUserByCondition(UserFilterForm filter) {
+		return null;
 	}
 
 	@Transactional
