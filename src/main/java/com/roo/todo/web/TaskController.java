@@ -54,7 +54,6 @@ public class TaskController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value= "create")
 	public String create(Model model) {
-		model.addAttribute("categories", categoryService.findAllCategorys());
 		return showEditForm(model, new TaskEditForm(), null);
 	}
 	
@@ -63,9 +62,9 @@ public class TaskController {
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "save")
 	public String save(Model model, @Valid @ModelAttribute("form") TaskEditForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes){
-//		if (bindingResult.hasErrors()) {
-//			return showEditForm(model, form, bindingResult);
-//		}
+		if (bindingResult.hasErrors()) {
+			return showEditForm(model, form, bindingResult);
+		}
 		Task task = form.toEntity();
 		User user = new User();
 		//FIXME: Dummy user_id
@@ -84,7 +83,6 @@ public class TaskController {
 	@RequestMapping(method = RequestMethod.GET, value = "update/{id}")
 	public String update(Model model, @PathVariable("id") Integer id) {
 		Task task  = taskService.findTask(id);
-		model.addAttribute("categories", categoryService.findAllCategorys());
 		if (task == null) {
 			return "redirect:/task/list";
 		}
@@ -108,6 +106,7 @@ public class TaskController {
 	
 	private String showEditForm(Model model, TaskEditForm form, BindingResult bindingResult) {
 		model.addAttribute("form", form);
+		model.addAttribute("categories", categoryService.findAllCategorys());
 		return "task/edit";
 	}
 }
