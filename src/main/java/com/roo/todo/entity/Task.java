@@ -53,8 +53,4 @@ public class Task {
 	@DateTimeFormat(style = "MM")
 	private Date endTime;
 	
-	public Boolean getStatus() {
-		return endTime == null;
-	}
-	
 }
