@@ -27,8 +27,11 @@ public class UserService {
 		return entityManager.createQuery("SELECT o FROM User o WHERE id=:id", User.class).setParameter("id", id).getSingleResult();
 	}
 	
-	public List<User> findUserByCondition(UserFilterForm filter) {
-		return null;
+	public List<User> findAllUsersByCondition(UserFilterForm filter) {
+		//TODO Add id for filter
+		String query = "SELECT o FROM User o WHERE email LIKE :email";
+		String value = filter.getEmail() == null ? "" : filter.getEmail();
+		return entityManager.createQuery(query, User.class).setParameter("email", "%" + value + "%").getResultList();
 	}
 
 	@Transactional

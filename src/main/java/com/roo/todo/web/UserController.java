@@ -29,7 +29,7 @@ public class UserController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "list")
 	public String list(Model model, @ModelAttribute("form") UserFilterForm form) {
-		model.addAttribute("users", userService.findAllUsers());
+		model.addAttribute("users", userService.findAllUsersByCondition(form));
 		return "users/list";
 	}
 
