@@ -10,8 +10,9 @@
 	<c:if test="${not empty messageCode}">
 		<spring:message code="${messageCode}" htmlEscape="false" />
 	</c:if>
+	<hr/>
+	<h1><spring:message code="common.filter"/></h1>
 	<form:form action="list" method="GET" modelAttribute="form">
-		<h1>Filter</h1>
 		<table>
 			<thead></thead>
 			<tbody>
@@ -27,11 +28,16 @@
 			<spring:message code="common.search"/>
 		</button>
 	</form:form>
+	<hr/>
+	<h1><spring:message code="common.result"/></h1>
 	<table>
 		<thead>
 			<tr>
 				<th>ID</th>
 				<th>Email</th>
+				<th></th>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
