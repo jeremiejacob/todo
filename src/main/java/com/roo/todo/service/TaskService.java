@@ -26,8 +26,12 @@ public class TaskService {
 	}
 
 	public List<Task> findAllTasksByCondition(TaskFilterForm filter) {
-		
-		return null;
+		String query = "SELECT o FROM Task o WHERE category.id=:categoryId";
+		if (filter.getCategoryId() == null) {
+			return entityManager.createQuery("SELECT o FROM Task o WHERE category.id is NOT NULL", Task.class).getResultList();
+		} else {
+			return entityManager.createQuery(query, Task.class).setParameter("categoryId", filter.getCategoryId()).getResultList();
+		}
 	}
 	
 	@Transactional
