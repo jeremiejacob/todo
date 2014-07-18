@@ -3,10 +3,35 @@
 	xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
 	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="http://www.springframework.org/tags/form"
 	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
-	<h1>Task List</h1>
+	<h1><spring:message code="list.task"/></h1>
+	<hr/>
+	<h1><spring:message code="common.filter"/></h1>
+	<form:form action="list" method="GET" modelAttribute="form">
+	<table>
+		<thead></thead>
+		<tbody>
+			<tr>
+				<td><spring:message code="common.description"/></td>
+				<td>
+					<form:input path="description"/>
+				</td>
+			</tr>
+			<tr>
+				<td><spring:message code="common.category"/></td>
+				<td>
+					<form:input path="categoryType"/>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<form:button type="submit"><spring:message code="common.search"/></form:button>
+	</form:form>
+	<hr/>
+	<h1><spring:message code="common.result"/></h1>
 	<table>
 		<thead>
 			<tr>

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.roo.form.CategoryEditForm;
 import com.roo.form.TaskEditForm;
+import com.roo.form.TaskFilterForm;
 import com.roo.todo.entity.Category;
 import com.roo.todo.entity.Task;
 import com.roo.todo.entity.User;
@@ -35,7 +36,7 @@ public class TaskController {
 	 * Display task list screen
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "list")
-	public String list(Model model) {
+	public String list(Model model, @ModelAttribute("form") TaskFilterForm form) {
 		model.addAttribute("tasks", taskService.findAllTasks());
 		return "task/list";
 	}

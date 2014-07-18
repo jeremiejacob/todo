@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.roo.form.TaskFilterForm;
 import com.roo.todo.entity.Task;
 
 @Service
@@ -24,6 +25,11 @@ public class TaskService {
 		return entityManager.find(Task.class, id);
 	}
 
+	public List<Task> findAllTasksByCondition(TaskFilterForm filter) {
+		
+		return null;
+	}
+	
 	@Transactional
 	public void persist(Task task) {
 		entityManager.persist(task);
