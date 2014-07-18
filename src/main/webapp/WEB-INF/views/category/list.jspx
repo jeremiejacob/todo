@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:c="http://java.sun.com/jstl/core_rt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+<div xmlns:c="http://java.sun.com/jstl/core_rt" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:form="http://www.springframework.org/tags/form" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    
+    <h1><spring:message code="list.category"/></h1>
     <c:if test="${not empty messageCode}">
     	<spring:message code="${messageCode}" htmlEscape="false" />
     </c:if>
+    <hr/>
+    <h1><spring:message code="common.filter"/></h1>
+	<form:form action="list" method="GET" modelAttribute="form">
+		<table>
+			<thead></thead>
+			<tbody>
+				<tr>
+					<td><spring:message code="common.type" /></td>
+					<td>
+						<form:input path="type"/>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<button type="submit">
+			<spring:message code="common.search"/>
+		</button>
+	</form:form>
     <hr/>
     <h1><spring:message code="common.result"/></h1>
     <table>
