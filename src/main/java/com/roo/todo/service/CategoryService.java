@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.roo.form.CategoryFilterForm;
 import com.roo.todo.entity.Category;
 
 @Service
@@ -22,6 +23,12 @@ public class CategoryService {
 
 	public Category findCategory(Integer id) {
 		return entityManager.find(Category.class, id);
+	}
+	
+	public List<Category> findAllCategorysByCondition(CategoryFilterForm filter) {
+		String query = "SELECT o FROM Category o WHERE type LIKE :type";
+		String value = filter.getType() == null ? "" : filter.getType();
+		return entityManager.createQuery(query, Category.class).setParameter("type", "%" + value + "%").getResultList();
 	}
 
 	@Transactional

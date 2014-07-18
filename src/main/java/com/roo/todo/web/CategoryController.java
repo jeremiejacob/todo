@@ -29,7 +29,7 @@ public class CategoryController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "list")
 	public String list(Model model, @ModelAttribute("form") CategoryFilterForm form) {
-		model.addAttribute("categories", categoryService.findAllCategorys());
+		model.addAttribute("categories", categoryService.findAllCategorysByCondition(form));
 		return "category/list";
 	}
 	
