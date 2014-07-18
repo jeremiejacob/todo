@@ -15,15 +15,15 @@
 		<thead></thead>
 		<tbody>
 			<tr>
-				<td><spring:message code="common.description"/></td>
-				<td>
-					<form:input path="description"/>
-				</td>
-			</tr>
-			<tr>
 				<td><spring:message code="common.category"/></td>
 				<td>
 					<form:select path="categoryId" items="${categories}" itemLabel="type" itemValue="id"/>
+				</td>
+			</tr>
+			<tr>
+				<td><spring:message code="common.description"/></td>
+				<td>
+					<form:input path="description"/>
 				</td>
 			</tr>
 		</tbody>
