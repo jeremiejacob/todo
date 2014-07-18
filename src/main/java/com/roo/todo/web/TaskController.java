@@ -37,6 +37,7 @@ public class TaskController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "list")
 	public String list(Model model, @ModelAttribute("form") TaskFilterForm form) {
+		model.addAttribute("categories", categoryService.findAllCategorys());
 		model.addAttribute("tasks", taskService.findAllTasks());
 		return "task/list";
 	}

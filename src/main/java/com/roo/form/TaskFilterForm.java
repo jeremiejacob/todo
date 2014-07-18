@@ -6,7 +6,7 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 public class TaskFilterForm {
 
 	private String description;
-	private String categoryType;
+	private Integer categoryId;
 	private String startTime;
 	private String endTime;
 }

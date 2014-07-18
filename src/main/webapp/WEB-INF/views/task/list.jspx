@@ -23,7 +23,7 @@
 			<tr>
 				<td><spring:message code="common.category"/></td>
 				<td>
-					<form:input path="categoryType"/>
+					<form:select path="categoryType" items="${categories}" itemLabel="type" itemValue="id"/>
 				</td>
 			</tr>
 		</tbody>
