@@ -26,33 +26,25 @@ public class TaskService {
 	}
 
 	public List<Task> findAllTasksByCondition(TaskFilterForm filter) {
-		String query = "SELECT o FROM Task o WHERE category.id=:categoryId AND description LIKE :description";
-		
-		String queryByCategoryId = "SELECT o FROM Task o WHERE category.id=:categoryId";
-		
-//        if (filter.getCategoryId() == null) {
-//                return entityManager.createQuery("SELECT o FROM Task o WHERE category.id is NOT NULL", Task.class).getResultList();
-//        } else {
-//                return entityManager.createQuery(query, Task.class).setParameter("categoryId", filter.getCategoryId()).getResultList();
-//        }
-        
-		if (filter.getCategoryId() == null) {
-			if (filter.getDescription() == null) {
-				return entityManager.createQuery("SELECT o FROM Task o WHERE category.id is NOT NULL AND description is NOT NULL", Task.class).getResultList();
-			} else {
-				return null;
-//				return entityManager.createQuery("SELECT o FROM Task o WHERE description LIKE :description", Task.class)
-//						.setParameter("description", "%" + filter.getDescription() + "%").getResultList();
-			}
-			
-		} else {
-			if (filter.getDescription() != null) {
-				return entityManager.createQuery(query, Task.class)
+        if (filter.getCategoryId() == null) {
+        	if (filter.getDescription() != null) {
+        		return entityManager.createQuery("SELECT o FROM Task o WHERE description LIKE :description")
+        				.setParameter("description", "%" + filter.getDescription() + "%")
+        				.getResultList();
+        	}
+        	return entityManager.createQuery("SELECT o FROM Task o", Task.class).getResultList();
+        } else if (filter.getCategoryId() != null) {
+        	if (filter.getDescription() != null) {
+				return entityManager.createQuery("SELECT o FROM Task o WHERE category.id=:categoryId AND description LIKE :description", Task.class)
 						.setParameter("categoryId", filter.getCategoryId())
-						.setParameter("description", filter.getDescription()).getResultList();
+						.setParameter("description", "%" + filter.getDescription() + "%").getResultList();
 			} 
-			return entityManager.createQuery(queryByCategoryId, Task.class).setParameter("categoryId", filter.getCategoryId()).getResultList();
-		}
+            return entityManager.createQuery("SELECT o FROM Task o WHERE category.id=:categoryId", Task.class)
+            		.setParameter("categoryId", filter.getCategoryId())
+            		.getResultList();
+        }
+        
+        return null;
 		
 	}
 	
