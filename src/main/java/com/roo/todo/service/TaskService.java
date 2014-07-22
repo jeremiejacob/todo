@@ -28,14 +28,14 @@ public class TaskService {
 	public List<Task> findAllTasksByCondition(TaskFilterForm filter) {
         if (filter.getCategoryId() == null) {
         	if (filter.getDescription() != null) {
-        		return entityManager.createQuery("SELECT o FROM Task o WHERE description LIKE :description")
+        		return entityManager.createQuery("SELECT o FROM Task o WHERE UPPER(description) LIKE UPPER(:description)")
         				.setParameter("description", "%" + filter.getDescription() + "%")
         				.getResultList();
         	}
         	return entityManager.createQuery("SELECT o FROM Task o", Task.class).getResultList();
         } else if (filter.getCategoryId() != null) {
         	if (filter.getDescription() != null) {
-				return entityManager.createQuery("SELECT o FROM Task o WHERE category.id=:categoryId AND description LIKE :description", Task.class)
+				return entityManager.createQuery("SELECT o FROM Task o WHERE category.id=:categoryId AND UPPER(description) LIKE UPPER(:description)", Task.class)
 						.setParameter("categoryId", filter.getCategoryId())
 						.setParameter("description", "%" + filter.getDescription() + "%").getResultList();
 			} 
@@ -45,7 +45,6 @@ public class TaskService {
         }
         
         return null;
-		
 	}
 	
 	@Transactional

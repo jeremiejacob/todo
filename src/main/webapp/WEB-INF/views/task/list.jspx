@@ -31,7 +31,7 @@
 	<form:button type="submit"><spring:message code="common.search"/></form:button>
 	</form:form>
 	<hr/>
-	<h1><spring:message code="common.result"/></h1>
+	<h1><spring:message code="common.result"/></h1><c:out value="${dateTimeNow}"/>
 	<table>
 		<thead>
 			<tr>
@@ -54,7 +54,11 @@
 					<td>${task.endTime}</td>
 					<td><c:out value="${task.category.type}" /></td>
 					<td><c:out value="${task.description}"/></td>
-					<td>Not Done Yet</td>
+					<td>
+						<c:if test="${task.endTime == null}">Undetermined</c:if>
+						<c:if test="${dateTimeNow >= task.endTime}">Already Done</c:if>
+						<c:if test="${dateTimeNow ge task.startTime and dateTimeNow le task.endTime}">In Progress</c:if>
+					</td>
 					<td>
 						<button class="btn btn-info" onclick="location.href='show/${task.id}';" type="button">
 							<spring:message code="common.show" htmlEscape="false" />

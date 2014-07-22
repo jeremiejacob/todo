@@ -1,8 +1,11 @@
 package com.roo.todo.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.validation.Valid;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.roo.form.CategoryEditForm;
 import com.roo.form.TaskEditForm;
 import com.roo.form.TaskFilterForm;
-import com.roo.todo.entity.Category;
 import com.roo.todo.entity.Task;
 import com.roo.todo.entity.User;
 import com.roo.todo.service.CategoryService;
@@ -39,6 +40,7 @@ public class TaskController {
 	public String list(Model model, @ModelAttribute("form") TaskFilterForm form) {
 		model.addAttribute("categories", categoryService.findAllCategorys());
 		model.addAttribute("tasks", taskService.findAllTasksByCondition(form));
+		model.addAttribute("dateTimeNow", new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
 		return "task/list";
 	}
 	
